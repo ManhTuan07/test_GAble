@@ -5,6 +5,7 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
   profiles:
     active: dev
+
 coin.server:
   api: https://api.coingecko.com/api/v3
   ping: /ping

@@ -10,12 +10,11 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/coins")
@@ -30,8 +29,14 @@ public class CoinController {
             @ApiResponse(responseCode = "400", description = "Invalid request"),
             @ApiResponse(responseCode = "500", description = "Server internal error")
     })
-    @GetMapping("getcoins")
-    public ResponseEntity<?> getCoins(@Valid @RequestBody CoinDto requestDto) {
-        return ResponseEntity.ok(coinService.getCoins(requestDto));
+    @GetMapping("getcoins/{currency}")
+    public ResponseEntity<Object> getCoins(@PathVariable String currency) {
+        String uri = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=";
+        RestTemplate restTemplate = new RestTemplate();
+        String search = uri + currency;
+        Object object = restTemplate.getForObject(search, Object.class);
+        return ResponseEntity.ok(object);
     }
+
+
 }

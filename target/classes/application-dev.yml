@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/testcoin
+    username: test
+    password: test
+  flyway:
+    enabled: true

@@ -36,6 +36,8 @@ public class CoinController {
 
     @GetMapping("getcoinsdetail/{id}")
     public CoinDetailDto getCoinsDetail (@PathVariable String id) {
-        return coinService.getCoinDetail(id);
+        return coinService.getSingleCoinDetail(id);
     }
+
+
 }

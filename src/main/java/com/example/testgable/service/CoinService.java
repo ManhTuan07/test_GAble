@@ -7,7 +7,10 @@ import com.example.testgable.dto.CoinResponseDto;
 import java.util.List;
 
 public interface CoinService {
-    CoinDetailDto getCoinDetail(String id);
+    List<CoinDetailDto> getCoinDetail(List<CoinMarketDto> coinMarketDtos);
     List<CoinMarketDto> getCoinMarket(String currency);
     List<CoinResponseDto> getCoinResponse (List<CoinMarketDto> coinMarketDtos);
+
+    CoinDetailDto getSingleCoinDetail(String id);
+
 }

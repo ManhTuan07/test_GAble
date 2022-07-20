@@ -18,11 +18,16 @@ public class CoinServiceImpl implements CoinService {
     List<CoinResponseDto> coinResponseDtoList = new ArrayList<>();
 
     @Override
-    public CoinDetailDto getCoinDetail(String id) {
+    public List<CoinDetailDto> getCoinDetail(List<CoinMarketDto> coinMarketDtos) {
         String coinDetailUrl = "https://api.coingecko.com/api/v3/coins/";
         RestTemplate coinDetailRestTemplate = new RestTemplate();
-        CoinDetailDto coinDetailDto = coinDetailRestTemplate.getForObject(coinDetailUrl+id, CoinDetailDto.class);
-        return coinDetailDto;
+        List<CoinDetailDto> result = new ArrayList<>();
+        for (CoinMarketDto coinMarketDto:
+                coinMarketDtos) {
+            CoinDetailDto coinDetailDto = coinDetailRestTemplate.getForObject(coinDetailUrl+coinMarketDto.getId(), CoinDetailDto.class);
+            result.add(coinDetailDto);
+        }
+        return result;
     }
 
     @Override
@@ -37,17 +42,21 @@ public class CoinServiceImpl implements CoinService {
     public List<CoinResponseDto> getCoinResponse(List<CoinMarketDto> coinMarketDtos) {
         for (CoinMarketDto coinMarket: coinMarketDtos) {
             CoinResponseDto coinResponseDto = new CoinResponseDto();
-            CoinDetailDto coinDetailDto = getCoinDetail(coinMarket.getId());
             coinResponseDto.setImage(coinMarket.getImage());
             coinResponseDto.setName(coinMarket.getName());
             coinResponseDto.setSymbol(coinMarket.getSymbol());
             coinResponseDto.setPriceChangePercentage24h(coinMarket.getPriceChangePercentage24h());
-            coinResponseDto.setDescription(coinDetailDto.getDescription().getEn());
-            coinResponseDto.setTradeUrl(coinDetailDto.getTickers().get(0).getTradeUrl());
-            coinResponseDto.setCurrentPrice(coinDetailDto.getCurrentPrice());
             coinResponseDtoList.add(coinResponseDto);
         }
         return coinResponseDtoList;
+    }
+
+    @Override
+    public CoinDetailDto getSingleCoinDetail(String id) {
+        String coinDetailUrl = "https://api.coingecko.com/api/v3/coins/";
+        RestTemplate coinDetailRestTemplate = new RestTemplate();
+        CoinDetailDto coinDetailDto = coinDetailRestTemplate.getForObject(coinDetailUrl+id, CoinDetailDto.class);
+        return coinDetailDto;
     }
 
 }

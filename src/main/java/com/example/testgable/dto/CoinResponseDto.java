@@ -8,7 +8,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 @Getter
 @Setter
@@ -26,7 +25,7 @@ public class CoinResponseDto {
 
     private BigDecimal currentPrice;
 
-    private DescriptionDto description;
+    private String description;
 
-    private List<TickerDto> tradeUrl;
+    private String tradeUrl;
 }

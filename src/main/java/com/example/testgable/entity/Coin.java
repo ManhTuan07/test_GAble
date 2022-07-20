@@ -27,7 +27,6 @@ public class Coin {
     @Column(name = "price_change_percentage_24h", precision = 19, scale = 2)
     private Double priceChangePercentage24h;
 
-
     @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 

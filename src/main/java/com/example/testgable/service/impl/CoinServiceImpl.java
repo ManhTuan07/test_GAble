@@ -53,8 +53,7 @@ public class CoinServiceImpl implements CoinService {
             saveToDB(coinMarketDtos);
             return new ResponseEntity<>(pages, HttpStatus.OK);
         }catch(Exception e){
-            List<Coin> response = getFromDB(coinRequestDto);
-            return new ResponseEntity<>(response, HttpStatus.OK);
+            return new ResponseEntity<>("Server down", HttpStatus.NOT_FOUND);
         }
 
     }
@@ -77,13 +76,6 @@ public class CoinServiceImpl implements CoinService {
             coinList.add(coin);
         }
         return coinRepository.saveAll(coinList);
-    }
-
-    private List<Coin> getFromDB(CoinRequestDto coinRequestDto){
-        int minCapRank = (coinRequestDto.getPage() - 1) * coinRequestDto.getPerPage() + 1;
-        int maxCapRank = coinRequestDto.getPage() * coinRequestDto.getPerPage();
-        List<Coin> coinResponseDtos = coinRepository.findAllByMarketCapRank(minCapRank, maxCapRank);
-        return coinResponseDtos;
     }
 
 }

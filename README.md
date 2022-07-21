@@ -8,7 +8,6 @@ Author - Luke Nguyen
 * [Technologies](#technologies)
 * [Setup](#setup)
 * [Requirements](#requirements)
-* [Explanations](#explanation)
 
 
 ## General Info
@@ -50,11 +49,6 @@ curl --location --request POST 'localhost:8081/api/auth/v1/registration' \
 - Create the API [get coins] to access data from the Coingecko server and provide a response with a preset structure.
 - When api.coingecko.com is unavailable, this API must provide backup functionality (network error, site is down, etc.)
 
-## Explanations
 
-- The data provided by coin gecko is reformatted as the backend server's primary function. Additionally, 
-it saves the coins and currencies from the coin server so that it can subsequently query them 
-if the coin server cannot be contacted. 
-- In case the database doesn't have data, a dummy object will be returned.
 
 

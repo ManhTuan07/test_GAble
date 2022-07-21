@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface CoinRepository extends JpaRepository<Coin, String> {
-    List<Coin> findAllByMarketCapRank(int min, int max);
+//    List<Coin> findAllByMarketCapRank(int min, int max);
 }

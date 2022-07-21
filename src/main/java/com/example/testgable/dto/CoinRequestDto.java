@@ -20,11 +20,11 @@ public class CoinRequestDto {
     String currency;
 
     @Min(value = 1, message = "Page min value is 1")
-    @Max(value = 100, message = "Page max value is 100")
+    @Max(value = 100, message = "Page max value is 50")
     int page = 0;
 
     @Min(value = 1, message = "Per_page min value is 1")
-    @Max(value = 250, message = "Per_page max value is 250")
+    @Max(value = 250, message = "Per_page max value is 100")
     int perPage;
 
 }

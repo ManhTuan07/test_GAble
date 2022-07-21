@@ -13,7 +13,6 @@ import java.math.BigDecimal;
 @IdClass(CoinPricePK.class)
 public class CoinPrice {
 
-
     @Id
     @ManyToOne(optional = false)
     @JoinColumn(name = "currency_id", nullable = false)

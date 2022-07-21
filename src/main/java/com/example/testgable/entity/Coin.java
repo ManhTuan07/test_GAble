@@ -15,6 +15,7 @@ public class Coin {
     @Id
     @Column(name = "id", nullable = false)
     private String id;
+
     @Column(name = "symbol")
     private String symbol;
 

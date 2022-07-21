@@ -23,6 +23,7 @@ public class CoinResponseDto {
     @JsonProperty("price_change_percentage_24h")
     private Double priceChangePercentage24h;
 
+    @JsonProperty("current_price")
     private BigDecimal currentPrice;
 
     private String description;

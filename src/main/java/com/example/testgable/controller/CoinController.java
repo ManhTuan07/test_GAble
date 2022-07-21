@@ -1,15 +1,15 @@
 package com.example.testgable.controller;
 
-import com.example.testgable.dto.CoinDetailDto;
-import com.example.testgable.dto.CoinMarketDto;
-import com.example.testgable.dto.CoinRequestDto;
-import com.example.testgable.dto.CoinResponseDto;
+import com.example.testgable.dto.*;
 import com.example.testgable.service.impl.CoinServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -29,15 +29,14 @@ public class CoinController {
             @ApiResponse(responseCode = "500", description = "Server internal error")
     })
     @GetMapping("getcoins")
-    public List<CoinResponseDto> getCoins(@RequestBody CoinRequestDto coinRequestDto) {
-        List<CoinMarketDto> coinMarketDtos = coinService.getCoinMarket(coinRequestDto.getCurrency());
-        return coinService.getCoinResponse(coinMarketDtos);
+    public Page<CoinResponseDto> getCoins(@RequestBody CoinRequestDto coinRequestDto, Pageable pageable) {
+        pageable = PageRequest.of(coinRequestDto.getPage(),coinRequestDto.getPerPage());
+        return coinService.getCoinResponse(coinRequestDto, pageable);
     }
 
     @GetMapping("getcoinsdetail/{id}")
     public CoinDetailDto getCoinsDetail (@PathVariable String id) {
         return coinService.getSingleCoinDetail(id);
     }
-
-
+    
 }

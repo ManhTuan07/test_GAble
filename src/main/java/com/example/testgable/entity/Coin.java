@@ -27,6 +27,9 @@ public class Coin {
     @Column(name = "price_change_percentage_24h", precision = 19, scale = 2)
     private Double priceChangePercentage24h;
 
+    @OneToMany(mappedBy = "coin", orphanRemoval = true)
+    private List<CoinPrice> coinPrices = new ArrayList<>();
+
     @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 

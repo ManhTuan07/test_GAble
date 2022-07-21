@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/coins")
+@RequestMapping("/get_coins")
 @RequiredArgsConstructor
 @Tag(name = "Coin Controller", description = "Coins-related functions")
 public class CoinController {
@@ -26,7 +26,7 @@ public class CoinController {
             @ApiResponse(responseCode = "500", description = "Server internal error")
     })
 
-    @GetMapping("getcoins")
+    @GetMapping()
     public ResponseEntity<?> getCoin (@RequestBody CoinRequestDto coinRequestDto){
         Pageable pageable = PageRequest.of(coinRequestDto.getPage(),coinRequestDto.getPerPage());
         return coinService.getCoin(coinRequestDto,pageable);

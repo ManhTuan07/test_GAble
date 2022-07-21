@@ -1,4 +1,6 @@
-# JAVA (back-end) Developer Recruitment Assessment
+# G-able DTD Backend Java Recruitment Assessment
+
+Author - Luke Nguyen
 
 ## Table of contents
 
@@ -11,7 +13,7 @@
 
 ## General Info
 
-This is a project to develop a web service to get and transform data from Coin-Gecko Server
+This is a project to develop a web service to get data from Coin-Gecko Server and format it to a specific response
 
 ## Technologies
 
@@ -21,35 +23,24 @@ This is a project to develop a web service to get and transform data from Coin-G
 
 ## Setup
 
-**Prerequisites:**
-
-- Running Postgres DB at port 5432. Config username/password/database in application.yml
-
+**Precondition:**
+- Postgres DB runs at port 5432. Change username/password/database in application.yml
 **Run:**
-
 - Open the project in IDE and run the project
 - Select 'dev' as active profile
 
-## URL
-
-- Please visit [GetCoins.html](http://localhost:8080/getcoins.html) to access the documentation
-
 ## Requirements
 
-- Create API [get_coins] to query data from coingecko server and return response with predefined structure
-- This API must support in case of the api.coingecko.com is unreachable (network error, site is down, etc.)
+- Create the API [get coins] to access data from the Coingecko server and provide a response with a preset structure.
+- When api.coingecko.com is unavailable, this API must provide backup functionality (network error, site is down, etc.)
 
 ## Explanations
 
-- The backend server's main feature is reformat the data provided by coin gecko.
-  It is also saving coins and currencies from coin server to later can query them again in case the coin server can't be
-  reached. To support this, when booting up, the service will call to coin server to load all supported currencies. When
-  coin server is down, the service can validate the requested currency and return existing coin data if it was loaded before.
+- The data provided by coin gecko is reformatted as the backend server's primary function. Additionally, 
+it saves the coins and currencies from the coin server so that it can subsequently query them 
+if the coin server cannot be contacted. To support this, the service will make a call to the coin server during startup 
+in order to load all supported currencies. The service can verify the requested currency and, if the coin data was previously loaded, 
+return it even if the coin server is down.
 - In case the database doesn't have data, a dummy object will be returned.
-- Also, other libraries were included, such as
-    - Flyway for Database migration, so that we can update database schema in a secure way. That's why
-      _spring.jpa.hibernate.ddl-auto_ is set at _create_ to leverage this dependency.
-    - WebClient to support asynchronous web requests
-    - MapStruct to facilitate object mapping
-    - Spring OpenApi is included to generate API documentation for the web service.
+
 

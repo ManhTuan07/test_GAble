@@ -54,9 +54,7 @@ curl --location --request POST 'localhost:8081/api/auth/v1/registration' \
 
 - The data provided by coin gecko is reformatted as the backend server's primary function. Additionally, 
 it saves the coins and currencies from the coin server so that it can subsequently query them 
-if the coin server cannot be contacted. To support this, the service will make a call to the coin server during startup 
-in order to load all supported currencies. The service can verify the requested currency and, if the coin data was previously loaded, 
-return it even if the coin server is down.
+if the coin server cannot be contacted. 
 - In case the database doesn't have data, a dummy object will be returned.
 
 

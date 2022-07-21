@@ -8,8 +8,8 @@ Author - Luke Nguyen
 * [Technologies](#technologies)
 * [Setup](#setup)
 * [Requirements](#requirements)
-* [URL](#url)
 * [Explanations](#explanation)
+
 
 ## General Info
 
@@ -30,6 +30,20 @@ This is a project to develop a web service to get data from Coin-Gecko Server an
 **Run:**
 - Open the project in IDE and run the project
 - Select 'dev' as active profile
+- After booting up the system, test the API with request below:
+
+``````
+curl --location --request POST 'localhost:8081/api/auth/v1/registration' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "currency":(usd, thb,...),
+    "page": current page,
+    "per_page":item per page
+}'
+``````
+- There are validations for the request body:
+    - page min value is 1, max value is 50
+    - per_page min value is 1, max value is 100
 
 ## Requirements
 

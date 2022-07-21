@@ -28,17 +28,17 @@ public class CoinServiceImpl implements CoinService {
                     "https://api.coingecko.com/api/v3/coins/markets?vs_currency={vs_currency}", CoinResponseDto[].class,
                     uriVariable);
             CoinResponseDto[] responseDtos = getResponse.getBody();
-            List<CoinResponseDto> paging = Arrays.asList(responseDtos);
+            List<CoinResponseDto> coinResponseDtos = Arrays.asList(responseDtos);
             List<CoinMarketDto> coinMarketDtos = Arrays.asList(coinMarket);
             final int start = (int) pageable.getOffset();
-            final int end = Math.min((start + pageable.getPageSize()), paging.size());
-            Page<CoinResponseDto> pages = new PageImpl<>(paging.subList(start, end), pageable, paging.size());
+            final int end = Math.min((start + pageable.getPageSize()), coinResponseDtos.size());
+            Page<CoinResponseDto> pages = new PageImpl<>(coinResponseDtos.subList(start, end), pageable, coinResponseDtos.size());
             for (int i = start; i < end; i++) {
                 uriVariable.put("coin", coinMarketDtos.get(i).getId());
                 ResponseEntity<CoinDetailDto> getcoindetail = new RestTemplate().getForEntity(
                         "https://api.coingecko.com/api/v3/coins/{coin}", CoinDetailDto.class, uriVariable);
-                paging.get(i).setDescription(getcoindetail.getBody().getDescription().getEn());
-                paging.get(i).setTradeUrl(getcoindetail.getBody().getTickers()[0].getTradeUrl());
+                coinResponseDtos.get(i).setDescription(getcoindetail.getBody().getDescription().getEn());
+                coinResponseDtos.get(i).setTradeUrl(getcoindetail.getBody().getTickers()[0].getTradeUrl());
             }
 
             return new ResponseEntity<>(pages, HttpStatus.OK);

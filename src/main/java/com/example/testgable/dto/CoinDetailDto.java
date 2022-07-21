@@ -6,11 +6,13 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CoinDetailDto {
     DescriptionDto description;
-    TickerDto[] tickers;
+    List<TickerDto> tickers;
 }

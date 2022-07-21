@@ -15,7 +15,6 @@ public class Coin {
     @Id
     @Column(name = "id", nullable = false)
     private String id;
-
     @Column(name = "symbol")
     private String symbol;
 
@@ -36,4 +35,7 @@ public class Coin {
 
     @Column(name = "trade_url")
     private String tradeUrl;
+
+    @Column(name = "market_cap_rank")
+    private Integer marketCapRank;
 }

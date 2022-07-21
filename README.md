@@ -17,14 +17,16 @@ This is a project to develop a web service to get data from Coin-Gecko Server an
 
 ## Technologies
 
-* Java 1.11
+* Java 11
 * Spring Boot 2.7.1
 * PostgreSQL 42.4.0
 
 ## Setup
 
 **Precondition:**
+
 - Postgres DB runs at port 5432. Change username/password/database in application.yml
+
 **Run:**
 - Open the project in IDE and run the project
 - Select 'dev' as active profile

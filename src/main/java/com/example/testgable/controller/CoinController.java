@@ -1,6 +1,7 @@
 package com.example.testgable.controller;
 
 import com.example.testgable.dto.*;
+import com.example.testgable.service.CoinService;
 import com.example.testgable.service.impl.CoinServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @Tag(name = "Coin Controller", description = "Coins-related functions")
 public class CoinController {
-    private final CoinServiceImpl coinService;
+    private final CoinService coinService;
     @Operation(summary = "Get Coins data from Coin Server")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Coins Data are found"),
